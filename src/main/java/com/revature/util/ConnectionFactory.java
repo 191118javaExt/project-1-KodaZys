@@ -1,23 +1,39 @@
 package com.revature.util;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
 public class ConnectionFactory {
 	private static Logger logger = Logger.getLogger(ConnectionFactory.class);
 	public static Connection getConnection() {
-		String url = "jdbc:postgresql://localhost:5432/postgres";
-		String username = "postgres";
-		String password = "7540";
-		Connection con = null;
 		try {
-			con = DriverManager.getConnection(url, username, password);
-		} catch (SQLException e) {
-			logger.warn("Unable to obtain connection to database", e);
+			Class.forName("org.postgresql.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
-		return con;
+		
+		Properties props = new Properties();
+		// search for files in the current project
+		ClassLoader loader = Thread.currentThread().getContextClassLoader();
+		Connection conn = null;
+		
+		try {
+			props.load(loader.getResourceAsStream("connection.properties"));
+			String url = props.getProperty("url");
+			String username = props.getProperty("username");
+			String password = props.getProperty("password");
+			try {
+				conn = DriverManager.getConnection(url, username, password);
+			} catch (SQLException e) {
+				logger.warn("Unable to obtain connection to database", e);
+			}
+		} catch (IOException e1) {
+		}
+		return conn;
 	}
 }
