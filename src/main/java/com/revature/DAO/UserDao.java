@@ -137,7 +137,7 @@ public class UserDao implements MainDao<User, Integer>{
 		return u;
 	}
 	
-	// This takes User Login Info (username and password)
+	// This takes User LoginPageServlet Info (username and password)
 	public User findByLogin(String username, String password) {
 		User u = null;
 		try(Connection conn = ConnectionFactory.getConnection()) {
