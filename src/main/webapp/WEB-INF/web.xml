@@ -17,8 +17,6 @@
 	<servlet-mapping>
 		<servlet-name>WelcomeFrontController</servlet-name>
 		<url-pattern>*.welcomeView</url-pattern>
-	</servlet-mapping>  
-  
-  
-  
+	</servlet-mapping>
+	
 </web-app>
