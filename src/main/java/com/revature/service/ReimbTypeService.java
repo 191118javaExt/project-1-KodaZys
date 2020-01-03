@@ -23,4 +23,10 @@ public class ReimbTypeService {
 		return type;
 	}
 
+	public List<ReimbType> getAll(){
+		List<ReimbType> types = new ArrayList<ReimbType>();
+		types = rTypeDao.findAll();		
+		return types;
+	}
+
 }

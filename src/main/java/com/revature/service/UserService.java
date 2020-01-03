@@ -3,14 +3,12 @@ package com.revature.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
 import com.revature.DAO.UserDao;
 import com.revature.models.User;
 
 public class UserService {
 
-	Logger log = Logger.getLogger(UserService.class);
+
 	static UserDao ud = new UserDao();
 	
 	public User getUserById(int id) {
@@ -41,8 +39,8 @@ public class UserService {
 		return u;
 	}	
 	
-	public User getUserByLogin(String username, String password) {
-		User u = ud.findByLogin(username, password);
+	public User getUserByLogin(String email, String password) {
+		User u = ud.findByLogin(email, password);
 		return u;
 	}
 }

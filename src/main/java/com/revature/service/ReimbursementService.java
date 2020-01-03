@@ -2,13 +2,17 @@ package com.revature.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.log4j.Logger;
+
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
+
 import com.revature.DAO.ReimbursementDao;
 import com.revature.models.Reimbursement;
 
 public class ReimbursementService {
+
+//	private static Logger logger = LogManager.getLogger(ReimbursementService.class);
 	
-	Logger log = Logger.getLogger(ReimbursementService.class);
 	static ReimbursementDao rd = new ReimbursementDao();
 	
 	public Reimbursement getReimbById(int id) {

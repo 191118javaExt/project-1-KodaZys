@@ -137,13 +137,13 @@ public class UserDao implements MainDao<User, Integer>{
 		return u;
 	}
 	
-	// This takes User LoginPageServlet Info (username and password)
-	public User findByLogin(String username, String password) {
+	// This takes User LoginPageServlet Info (email and password)
+	public User findByLogin(String email, String password) {
 		User u = null;
 		try(Connection conn = ConnectionFactory.getConnection()) {
-			String sql = "SELECT * FROM USERS WHERE USERNAME = ? AND PW = ?";				// Retrieve User by username and password
+			String sql = "SELECT * FROM USERS WHERE EMAIL = ? AND PW = ?";				// Retrieve User by username and password
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, username);
+			ps.setString(1, email);
 			ps.setString(2, password);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
