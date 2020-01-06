@@ -1,36 +1,25 @@
 package com.revature.models;
 
 public class User {
+	
 	private int userId;
-	private String username;
-	private String password;
+	private String email;
+	private String pwd;
 	private String firstName;
 	private String lastName;
-	private String email;
-	private int userRoleId;
-	private int approved; 		// Not constructed --> checked when adding new user in UserService
-	// in UserService, iterate over all Users 
+	private int role;
+	private int approved;
 	
-	public User() {};
-	
-	public User(int userId, String username, String password, String firstName, String lastName, String email,
-			int userRoleId) {
+	public User() {}
+
+	public User(String email, String pwd, String firstName, String lastName, int roll) {
 		super();
-		this.userId = userId;
-		this.username = username;
-		this.password = password;
+		this.email = email;
+		this.pwd = pwd;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.email = email;
-		this.userRoleId = userRoleId;
-		this.approved = 0;		// Need Manager Approval - bool test > 0 == approved.
-	}
-	
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", email=" + email + ", userRoleId=" + userRoleId
-				+ ", approved=" + approved + "]";
+		this.role = roll;
+		this.approved = 0;		// Need manager approval
 	}
 
 	public int getUserId() {
@@ -41,20 +30,20 @@ public class User {
 		this.userId = userId;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getPwd() {
+		return pwd;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 
 	public String getFirstName() {
@@ -73,20 +62,12 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public String getEmail() {
-		return email;
+	public int getRole() {
+		return role;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public int getUserRoleId() {
-		return userRoleId;
-	}
-
-	public void setUserRoleId(int userRoleId) {
-		this.userRoleId = userRoleId;
+	public void setRole(int roll) {
+		this.role = roll;
 	}
 
 	public int getApproved() {
@@ -96,5 +77,14 @@ public class User {
 	public void setApproved(int approved) {
 		this.approved = approved;
 	}
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", email=" + email + ", pwd=" + pwd + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", role=" + role + ", approved=" + approved + "]";
+	}
+	
+
+	
 
 }

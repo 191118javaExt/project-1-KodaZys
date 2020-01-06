@@ -5,8 +5,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,7 +26,7 @@ public class ReimbursementsServlet extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-//	private static Logger logger = LogManager.getLogger(ReimbursementsServlet.class);
+	//private static Logger log = Logger.getLogger(ReimbursementsServlet.class);
 	private static ReimbursementService rs = new ReimbursementService();
 
 	@Override
@@ -41,31 +40,31 @@ public class ReimbursementsServlet extends HttpServlet{
 		else {
 			List<Reimbursement> reimbs = new ArrayList<Reimbursement>();
 			String requestType = req.getRequestURI();
-//			logger.trace(requestType);
-//			switch(requestType) {
-//			case "/ERS/get-pending-by-author":
-//				reimbs = rs.getPendingReimbursementsByAuthor(user.getUserId());
-//				break;
-//			case "/ERS/get-past-by-author":
-//				reimbs = rs.getPastReimbursementsByAuthor(user.getUserId());
-//				break;
-//			case "/ERS/get-all-by-author":
-//				reimbs = rs.getReimbursementsByAuthor(user.getUserId());
-//				break;
-//			case "/ERS/get-all-pending":
-//				reimbs = rs.getAllPendingReimbursements();
-//				break;
-//			case "/ERS/get-all-past":
-//				reimbs = rs.getAllPastReimbursements();
-//				break;
-//			case "/ERS/get-past-by-resolver":
-//				reimbs = rs.getReimbursementsByResolver(user.getUserId());
-//				break;
-//			}
+			//log.trace(requestType);
+			switch(requestType) {
+			case "/ERS/get-pending-by-author":
+				reimbs = rs.getPendingReimbursementsByAuthor(user.getUserId());
+				break;
+			case "/ERS/get-past-by-author":
+				reimbs = rs.getPastReimbursementsByAuthor(user.getUserId());
+				break;
+			case "/ERS/get-all-by-author":
+				reimbs = rs.getReimbursementsByAuthor(user.getUserId());
+				break;
+			case "/ERS/get-all-pending":
+				reimbs = rs.getAllPendingReimbursements();
+				break;
+			case "/ERS/get-all-past":
+				reimbs = rs.getAllPastReimbursements();
+				break;
+			case "/ERS/get-past-by-resolver":
+				reimbs = rs.getReimbursementsByResolver(user.getUserId());
+				break;
+			}
 			
 			ObjectMapper mapper = new ObjectMapper();
 			String reimsJson = mapper.writeValueAsString(reimbs);
-//			logger.debug(reimsJson);
+			//log.debug(reimsJson);
 			PrintWriter writer = resp.getWriter();
 			resp.setContentType("application/json");
 			writer.write(reimsJson);

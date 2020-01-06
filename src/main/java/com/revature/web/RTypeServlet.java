@@ -11,14 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.models.ReimbType;
-import com.revature.service.ReimbTypeService;
-//import com.revature.models.ReimbType;
-//import com.revature.service.ReimbTypeService;
+import com.revature.models.RType;
+import com.revature.service.RTypeService;
 
 /**
  * 
@@ -32,17 +29,17 @@ public class RTypeServlet extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-//	private static Logger logger = LogManager.getLogger(RTypeServlet.class);
-	private static ReimbTypeService typeService = new ReimbTypeService();
+	//private static Logger log = Logger.getLogger(RTypeServlet.class);
+	private static RTypeService typeService = new RTypeService();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		List<ReimbType> types = new ArrayList<ReimbType>();
+		List<RType> types = new ArrayList<RType>();
 		types = typeService.getAll();
 		
 		ObjectMapper mapper = new ObjectMapper();
 		String typesJson = mapper.writeValueAsString(types);
-//		logger.debug(typesJson);
+		//log.debug(typesJson);
 		
 		PrintWriter writer = resp.getWriter();
 		resp.setContentType("application/json");

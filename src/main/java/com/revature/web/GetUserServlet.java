@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.User;
@@ -27,14 +26,14 @@ public class GetUserServlet extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-//	private static Logger logger = LogManager.getLogger(GetUserServlet.class);
+	//private static Logger log = Logger.getLogger(GetUserServlet.class);
 	private static UserService us = new UserService();
 
 	// For login
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-//		logger.trace("IN GET USER SERVLET. SESSION: " + session.getId());		
+		//log.trace("IN GET USER SERVLET. SESSION: " + session.getId());		
 		User user = (User) session.getAttribute("user");
 //		if (user == null) {
 //			log.debug("user is null. FIX THIS!");
@@ -42,24 +41,23 @@ public class GetUserServlet extends HttpServlet{
 //			resp.sendRedirect("login");
 //		}
 //		else {
-//			logger.trace("Got a user: " + user);
+			//log.trace("Got a user: " + user);
 			ObjectMapper mapper = new ObjectMapper();
 			String userJson = mapper.writeValueAsString(user);
-//			logger.trace(userJson);
+			//log.trace(userJson);
 			PrintWriter writer = resp.getWriter();
 			resp.setContentType("application/json");
 			writer.write(userJson);
 //		}
 		
 	}
-
 	/**
 	 * Returns a list of all users
 	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<User> users = new ArrayList<User>();
-		users = us.getAllUsers();
+		users = us.safeGetAllUsers();
 		ObjectMapper mapper = new ObjectMapper();
 		String usersJson = mapper.writeValueAsString(users);
 		PrintWriter writer = resp.getWriter();

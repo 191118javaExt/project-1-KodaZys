@@ -1,40 +1,59 @@
 package com.revature.models;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Reimbursement {
+	
 
-	private int reimbId;
+	private int rId;
+	private int author;
+	private int rResolver;
 	private double amount;
-	private String timeSubmitted; 		// check to see Time formatted from DB
-	private String timeResolved;		// check to see Time formatted from DB
-	private String description;			// returns text of item
-	//----receipt? -- handle with AJAX / JSON
-	private int authorId;
-	private int resolverId;
-	private int statusId;
-	private int typeId;
+	private String submitDate;
+	private String resolveDate;
+	private int rType;
+	private String rDesc;
+	private int rStatus;
+	static SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy h:mm a");
 	
-	public Reimbursement() {};
 	
-	public Reimbursement(int reimbId, double amount, String timeSubmitted, String timeResolved, String description,
-			int authorId, int resolverId, int statusId, int typeId) {
+	public Reimbursement() {}
+	
+	// Not including: rId, rResolver, resolveDate.
+	// rStatus and sumbitDate automatically assigned in constructor
+	public Reimbursement(int author, double amount, int rType, String rDesc) {
 		super();
-		this.reimbId = reimbId;
+		this.author = author;
 		this.amount = amount;
-		this.timeSubmitted = timeSubmitted;
-		this.timeResolved = timeResolved;
-		this.description = description;
-		this.authorId = authorId;
-		this.resolverId = resolverId;
-		this.statusId = statusId;				// Status will be 1 = pending, 2 = approved, etc...
-		this.typeId = typeId;
+		this.rType = rType;
+		this.rDesc = rDesc;
+		this.rStatus = 1;		// Always created as pending request
+		submitDate = df.format(new Date());
 	}
 
-	public int getReimbId() {
-		return reimbId;
+	public int getrId() {
+		return rId;
 	}
 
-	public void setReimbId(int reimbId) {
-		this.reimbId = reimbId;
+	public void setrId(int rId) {
+		this.rId = rId;
+	}
+
+	public int getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(int author) {
+		this.author = author;
+	}
+
+	public int getrResolver() {
+		return rResolver;
+	}
+
+	public void setrResolver(int rResolver) {
+		this.rResolver = rResolver;
 	}
 
 	public double getAmount() {
@@ -45,68 +64,65 @@ public class Reimbursement {
 		this.amount = amount;
 	}
 
-	public String getTimeSubmitted() {
-		return timeSubmitted;
+	public String getSubmitDate() {
+		return submitDate;
 	}
 
-	public void setTimeSubmitted(String timeSubmitted) {
-		this.timeSubmitted = timeSubmitted;
+	public void setSubmitDate(String submitDate) {
+		this.submitDate = submitDate;
 	}
 
-	public String getTimeResolved() {
-		return timeResolved;
+	public String getResolveDate() {
+		return resolveDate;
 	}
 
-	public void setTimeResolved(String timeResolved) {
-		this.timeResolved = timeResolved;
+	public void setResolveDate(String resolveDate) {
+		this.resolveDate = resolveDate;
+	}
+	
+	public void createResolveDate() {
+		this.resolveDate = df.format(new Date());
 	}
 
-	public String getDescription() {
-		return description;
+	public int getrType() {
+		return rType;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setrType(int rType) {
+		this.rType = rType;
 	}
 
-	public int getAuthorId() {
-		return authorId;
+	public String getrDesc() {
+		return rDesc;
 	}
 
-	public void setAuthorId(int authorId) {
-		this.authorId = authorId;
+	public void setrDesc(String rDesc) {
+		this.rDesc = rDesc;
 	}
 
-	public int getResolverId() {
-		return resolverId;
+	public int getrStatus() {
+		return rStatus;
 	}
 
-	public void setResolverId(int resolverId) {
-		this.resolverId = resolverId;
+	public void setrStatus(int rStatus) {
+		this.rStatus = rStatus;
 	}
 
-	public int getStatusId() {
-		return statusId;
+	public static SimpleDateFormat getDf() {
+		return df;
 	}
 
-	public void setStatusId(int statusId) {
-		this.statusId = statusId;
+	public static void setDf(SimpleDateFormat df) {
+		Reimbursement.df = df;
 	}
 
-	public int getTypeId() {
-		return typeId;
-	}
-
-	public void setTypeId(int typeId) {
-		this.typeId = typeId;
-	}
-
+	
 	@Override
 	public String toString() {
-		return "Reimbursement [reimbId=" + reimbId + ", amount=" + amount + ", timeSubmitted=" + timeSubmitted
-				+ ", timeResolved=" + timeResolved + ", description=" + description + ", authorId=" + authorId
-				+ ", resolverId=" + resolverId + ", statusId=" + statusId + ", typeId=" + typeId + "]";
-	}
+		return "Reimbursement [rId=" + rId + ", author=" + author + ", rResolver=" + rResolver + ", amount=" + amount
+				+ ", rType=" + rType + ", rStatus=" + rStatus + "]";
+	}	
 	
 	
+
 }

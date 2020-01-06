@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 import com.revature.models.User;
 import com.revature.service.UserService;
@@ -23,7 +22,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 	static UserService us = new UserService();
-//	private static Logger logger = LogManager.getLogger(LoginServlet.class);
+	//private static Logger log = Logger.getLogger(LoginServlet.class);
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,12 +35,12 @@ public class LoginServlet extends HttpServlet {
 		// Login functionality
 		String email = req.getParameter("inputEmail");
 		String password = req.getParameter("inputPassword");
-//		logger.trace(email);
-//		logger.trace(password);
-//		
+		//log.trace(email);
+		//log.trace(password);
+		
 		// Validate user
-		User user = us.getUserByLogin(email, password);
-//		logger.trace(user);
+		User user = us.getUserByEmailPassword(email, password);
+		//log.trace(user);
 		// Go back to login page if wrong email/pw combo OR if user is not approved
 		if (user == null || user.getApproved() == 0) {			
 			req.getRequestDispatcher("index.html").forward(req, resp);
@@ -49,13 +48,13 @@ public class LoginServlet extends HttpServlet {
 		else {
 			HttpSession session = req.getSession();
 			session.setAttribute("user", user);
-//			logger.trace("ADDING USER TO SESSION: " + session.getId());		
+			//log.trace("ADDING USER TO SESSION: " + session.getId());		
 			// Employee login
-			if (user.getUserRoleId() == 1) {
+			if (user.getRole() == 1) {
 				resp.sendRedirect("load-employee-home");
 			}
 			// Manager login
-			else if (user.getUserRoleId() == 2) {
+			else if (user.getRole() == 2) {
 				resp.sendRedirect("load-manager-home");
 			}
 		}

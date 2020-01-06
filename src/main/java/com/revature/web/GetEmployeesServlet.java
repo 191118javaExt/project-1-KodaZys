@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.revature.models.User;
 import com.revature.service.UserService;
 
@@ -26,7 +26,7 @@ public class GetEmployeesServlet extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-//	private static Logger logger = LogManager.getLogger(GetEmployeesServlet.class);
+	//private static Logger log = Logger.getLogger(GetEmployeesServlet.class);
 	private static UserService us = new UserService();
 
 	/**
@@ -42,13 +42,13 @@ public class GetEmployeesServlet extends HttpServlet{
 		else {
 			List<User> users = new ArrayList<User>();
 			String requestType = req.getRequestURI();
-//			logger.trace(requestType);
+			//log.trace(requestType);
 			switch(requestType) {
 			case "/ERS/get-approved-employees":
-				users = us.getAllUsers();		//getAllUsersExcludeCurrent(user.getUserId());	// Gets all users excluding current manager. Passwords are set to null;
+				users = us.getAllUsersExcludeCurrent(user.getUserId());	// Gets all users excluding current manager. Passwords are set to null;
 				break;
 			case "/ERS/get-pending-employees":
-				users = us.getAllUsers();				//getAllPendingUsers();
+				users = us.getAllPendingUsers();
 				break;
 			}
 			
@@ -65,18 +65,38 @@ public class GetEmployeesServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		String requestType = req.getRequestURI();
-//		logger.trace(requestType);
+		//log.trace(requestType);
 		User onlyId = mapper.readValue(req.getInputStream(), User.class);	// User object with only the id set
 		int id = onlyId.getUserId();	// extract UserId
 		User u = us.getUserById(id);	// get user from db
 		switch(requestType) {
 		case "/ERS/approve-employee": 
 			u.setApproved(1);			// Approve the user
-			//us.update(u);
+			us.update(u);
 			break;
 		case "/ERS/deny-employee":
-			//us.delete(id);
+			us.delete(id);
 			break;		
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 }

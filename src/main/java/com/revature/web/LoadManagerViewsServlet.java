@@ -8,8 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.log4j.Logger;
 
 /**
  * 
@@ -23,7 +22,8 @@ public class LoadManagerViewsServlet extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-//	private static Logger logger = LogManager.getLogger(LoadManagerViewsServlet.class);
+
+	//private static Logger log = Logger.getLogger(LoadManagerViewsServlet.class);
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,15 +33,15 @@ public class LoadManagerViewsServlet extends HttpServlet{
 	
 	static String process(HttpServletRequest req, HttpServletResponse resp) {
 		switch(req.getRequestURI()) {
-		case "/project-1/front.managerView":
+		case "/ERS/front.managerView":
 			return "manager-front";
-		case "/project-1/past.managerView":
+		case "/ERS/past.managerView":
 			return "manager-past";
-		case "/project-1/resolved.managerView":
+		case "/ERS/resolved.managerView":
 			return "manager-resolved";
-		case "/project-1/employees.managerView":
+		case "/ERS/employees.managerView":
 			return "manager-employees";
-		case "/project-1/pendingUsers.managerView":
+		case "/ERS/pendingUsers.managerView":
 			return "manager-pending-users";
 		}			
 		return null;
