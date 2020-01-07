@@ -33,15 +33,15 @@ public class LoadManagerViewsServlet extends HttpServlet{
 	
 	static String process(HttpServletRequest req, HttpServletResponse resp) {
 		switch(req.getRequestURI()) {
-		case "/ERS/front.managerView":
+		case "/project-1/front.managerView":
 			return "manager-front";
-		case "/ERS/past.managerView":
+		case "/project-1/past.managerView":
 			return "manager-past";
-		case "/ERS/resolved.managerView":
+		case "/project-1/resolved.managerView":
 			return "manager-resolved";
-		case "/ERS/employees.managerView":
+		case "/project-1/employees.managerView":
 			return "manager-employees";
-		case "/ERS/pendingUsers.managerView":
+		case "/project-1/pendingUsers.managerView":
 			return "manager-pending-users";
 		}			
 		return null;

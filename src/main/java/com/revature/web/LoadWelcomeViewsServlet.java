@@ -34,7 +34,7 @@ public class LoadWelcomeViewsServlet extends HttpServlet{
 		switch(req.getRequestURI()) {
 		case "/project-1/login.welcomeView":
 			return "login";	
-		case "/peoject-1/create-account.welcomeView":
+		case "/project-1/create-account.welcomeView":
 			return "create-account";
 		default:
 			return null;

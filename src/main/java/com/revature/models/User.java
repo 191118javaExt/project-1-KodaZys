@@ -12,13 +12,13 @@ public class User {
 	
 	public User() {}
 
-	public User(String email, String pwd, String firstName, String lastName, int roll) {
+	public User(String email, String pwd, String firstName, String lastName, int role) {
 		super();
 		this.email = email;
 		this.pwd = pwd;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.role = roll;
+		this.role = role;
 		this.approved = 0;		// Need manager approval
 	}
 
@@ -66,8 +66,8 @@ public class User {
 		return role;
 	}
 
-	public void setRole(int roll) {
-		this.role = roll;
+	public void setRole(int role) {
+		this.role = role;
 	}
 
 	public int getApproved() {

@@ -42,22 +42,22 @@ public class ReimbursementsServlet extends HttpServlet{
 			String requestType = req.getRequestURI();
 			//log.trace(requestType);
 			switch(requestType) {
-			case "/ERS/get-pending-by-author":
+			case "/project-1/get-pending-by-author":
 				reimbs = rs.getPendingReimbursementsByAuthor(user.getUserId());
 				break;
-			case "/ERS/get-past-by-author":
+			case "/project-1/get-past-by-author":
 				reimbs = rs.getPastReimbursementsByAuthor(user.getUserId());
 				break;
-			case "/ERS/get-all-by-author":
+			case "/project-1/get-all-by-author":
 				reimbs = rs.getReimbursementsByAuthor(user.getUserId());
 				break;
-			case "/ERS/get-all-pending":
+			case "/project-1/get-all-pending":
 				reimbs = rs.getAllPendingReimbursements();
 				break;
-			case "/ERS/get-all-past":
+			case "/project-1/get-all-past":
 				reimbs = rs.getAllPastReimbursements();
 				break;
-			case "/ERS/get-past-by-resolver":
+			case "/project-1/get-past-by-resolver":
 				reimbs = rs.getReimbursementsByResolver(user.getUserId());
 				break;
 			}
@@ -70,8 +70,6 @@ public class ReimbursementsServlet extends HttpServlet{
 			writer.write(reimsJson);
 
 		}
-
-
 	}
 
 

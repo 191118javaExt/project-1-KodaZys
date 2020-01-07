@@ -44,10 +44,10 @@ public class GetEmployeesServlet extends HttpServlet{
 			String requestType = req.getRequestURI();
 			//log.trace(requestType);
 			switch(requestType) {
-			case "/ERS/get-approved-employees":
+			case "/project-1/get-approved-employees":
 				users = us.getAllUsersExcludeCurrent(user.getUserId());	// Gets all users excluding current manager. Passwords are set to null;
 				break;
-			case "/ERS/get-pending-employees":
+			case "/project-1/get-pending-employees":
 				users = us.getAllPendingUsers();
 				break;
 			}
@@ -70,11 +70,11 @@ public class GetEmployeesServlet extends HttpServlet{
 		int id = onlyId.getUserId();	// extract UserId
 		User u = us.getUserById(id);	// get user from db
 		switch(requestType) {
-		case "/ERS/approve-employee": 
+		case "/project-1/approve-employee": 
 			u.setApproved(1);			// Approve the user
 			us.update(u);
 			break;
-		case "/ERS/deny-employee":
+		case "/project-1/deny-employee":
 			us.delete(id);
 			break;		
 		}

@@ -178,7 +178,7 @@ public class UserDao {
 			String[] keyNames = {"USER_ID"};
 			PreparedStatement ps = conn.prepareStatement(sql, keyNames);
 			ps.setString(1, u.getEmail());
-			ps.setString(2,u.getPwd());
+			ps.setString(2, u.getPwd());
 			ps.setString(3, u.getFirstName());
 			ps.setString(4, u.getLastName());
 			ps.setInt(5, u.getRole());

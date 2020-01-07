@@ -42,10 +42,10 @@ public class ResolveRequestServlet extends HttpServlet {
 			int id = onlyId.getrId();
 			Reimbursement r = rs.getReimbursementById(id);
 			switch(requestType) {
-			case "/ERS/approve-request":
+			case "/project-1/approve-request":
 				r.setrStatus(2);	// 2 = APPROVED	
 				break;
-			case "/ERS/deny-request":
+			case "/project-1/deny-request":
 				r.setrStatus(3);	// 3 = DENIED
 				break;
 			}
