@@ -124,7 +124,9 @@ public class UserDao {
 	 * @param password
 	 * @return User for corresponding email/password combo. Null if correct combination does not exist in DB.
 	 */
-	public User findByEmailPassword(String email, String password) {
+	public User findByEmailPassword(String email, String password) { //password1
+//		int pass = password1.hashCode();
+//		String password = new Integer(pass).toString();
 		User u = null;
 		try(Connection conn = ConnectionFactory.getConnection()){
 			String sql = "SELECT * FROM USR WHERE EMAIL = ? AND PWD = ?";
@@ -174,12 +176,15 @@ public class UserDao {
 	 * @return the created user with updated UserId. Null if user was not created in the DB
 	 */
 	public User create(User u) {
+//		String pass = u.getPwd();
+//		int pass1 = pass.hashCode();
+//		String password = new Integer(pass1).toString();
 		try(Connection conn = ConnectionFactory.getConnection()){
 			String sql = "INSERT INTO USR(EMAIL, PWD, FIRSTNAME, LASTNAME, ROLL, APPROVED) VALUES(?,?,?,?,?,?)";
 			//String[] keyNames = {"USER_ID"};
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, u.getEmail());
-			ps.setString(2, u.getPwd());
+			ps.setString(2, u.getPwd()); // password 
 			ps.setString(3, u.getFirstName());
 			ps.setString(4, u.getLastName());
 			ps.setInt(5, u.getRoll());

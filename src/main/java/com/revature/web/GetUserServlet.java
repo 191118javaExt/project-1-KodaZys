@@ -38,7 +38,7 @@ public class GetUserServlet extends HttpServlet{
 //		if (user == null) {
 //			log.debug("user is null. FIX THIS!");
 //			session.invalidate();
-//			resp.sendRedirect("login");
+//		resp.sendRedirect("login");
 //		}
 //		else {
 			//log.trace("Got a user: " + user);
@@ -63,28 +63,5 @@ public class GetUserServlet extends HttpServlet{
 		PrintWriter writer = resp.getWriter();
 		resp.setContentType("application/json");
 		writer.write(usersJson);
-	}
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	}	
 }
