@@ -31,7 +31,7 @@ public class UserDao {
 				u.setPwd(rs.getString(3));
 				u.setFirstName(rs.getString(4));
 				u.setLastName(rs.getString(5));
-				u.setRole(rs.getInt(6));
+				u.setRoll(rs.getInt(6));
 				u.setApproved(rs.getInt(7));
 				users.add(u);
 			}					
@@ -56,7 +56,7 @@ public class UserDao {
 				u.setEmail(rs.getString(2));
 				u.setFirstName(rs.getString(4));
 				u.setLastName(rs.getString(5));
-				u.setRole(rs.getInt(6));
+				u.setRoll(rs.getInt(6));
 				u.setApproved(rs.getInt(7));
 				users.add(u);
 			}					
@@ -81,7 +81,7 @@ public class UserDao {
 				u.setPwd(rs.getString(3));
 				u.setFirstName(rs.getString(4));
 				u.setLastName(rs.getString(5));
-				u.setRole(rs.getInt(6));
+				u.setRoll(rs.getInt(6));
 				u.setApproved(rs.getInt(7));
 			}		
 		} catch (SQLException e) {
@@ -109,7 +109,7 @@ public class UserDao {
 				u.setPwd(rs.getString(3));
 				u.setFirstName(rs.getString(4));
 				u.setLastName(rs.getString(5));
-				u.setRole(rs.getInt(6));
+				u.setRoll(rs.getInt(6));
 				u.setApproved(rs.getInt(7));
 			}		
 		} catch (SQLException e) {
@@ -128,6 +128,7 @@ public class UserDao {
 		User u = null;
 		try(Connection conn = ConnectionFactory.getConnection()){
 			String sql = "SELECT * FROM USR WHERE EMAIL = ? AND PWD = ?";
+			System.out.println(conn);
 			PreparedStatement ps = conn.prepareStatement(sql);		// Prepared Statement
 			ps.setString(1, email);
 			ps.setString(2, password);
@@ -139,7 +140,7 @@ public class UserDao {
 				u.setPwd(rs.getString(3));
 				u.setFirstName(rs.getString(4));
 				u.setLastName(rs.getString(5));
-				u.setRole(rs.getInt(6));
+				u.setRoll(rs.getInt(6));
 				u.setApproved(rs.getInt(7));
 			}		
 		} catch (SQLException e) {
@@ -175,13 +176,13 @@ public class UserDao {
 	public User create(User u) {
 		try(Connection conn = ConnectionFactory.getConnection()){
 			String sql = "INSERT INTO USR(EMAIL, PWD, FIRSTNAME, LASTNAME, ROLL, APPROVED) VALUES(?,?,?,?,?,?)";
-			String[] keyNames = {"USER_ID"};
-			PreparedStatement ps = conn.prepareStatement(sql, keyNames);
+			//String[] keyNames = {"USER_ID"};
+			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, u.getEmail());
 			ps.setString(2, u.getPwd());
 			ps.setString(3, u.getFirstName());
 			ps.setString(4, u.getLastName());
-			ps.setInt(5, u.getRole());
+			ps.setInt(5, u.getRoll());
 			ps.setInt(6, u.getApproved());
 			int numRows = ps.executeUpdate();
 			if (numRows == 0) {
@@ -211,7 +212,7 @@ public class UserDao {
 			ps.setString(2, u.getPwd());
 			ps.setString(3, u.getFirstName());
 			ps.setString(4, u.getLastName());
-			ps.setInt(5, u.getRole());
+			ps.setInt(5, u.getRoll());
 			ps.setInt(6, u.getApproved());
 			ps.setInt(7, u.getUserId());
 			int numRows = ps.executeUpdate();
@@ -238,7 +239,4 @@ public class UserDao {
 			e.printStackTrace();
 		}
 	}
-	
-	
-
 }

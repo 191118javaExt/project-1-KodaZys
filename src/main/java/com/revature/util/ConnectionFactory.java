@@ -8,34 +8,61 @@ import java.util.Properties;
 
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
-
 public class ConnectionFactory {
-
-//	private static Logger logger = LogManager.getLogger(ConnectionFactory.class);
 	public static Connection getConnection() {
 		try {
 			Class.forName("org.postgresql.Driver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		
-		Properties props = new Properties();
+		Properties properties = new Properties();
 		// search for files in the current project
 		ClassLoader loader = Thread.currentThread().getContextClassLoader();
-		Connection conn = null;
-		
+		Connection connection = null;
 		try {
-			props.load(loader.getResourceAsStream("connection.properties"));
-			String url = props.getProperty("url");
-			String username = props.getProperty("username");
-			String password = props.getProperty("password");
+			properties.load(loader.getResourceAsStream("connection.properties"));
+			String url = properties.getProperty("url");
+			String username = properties.getProperty("username");
+			String password = properties.getProperty("password");
 			try {
-				conn = DriverManager.getConnection(url, username, password);
+				connection = DriverManager.getConnection(url, username, password);
 			} catch (SQLException e) {
-//				logger.warn("Unable to obtain connection to database", e);
+				//logger.warn("Unable to obtain connection to database", e);
 			}
 		} catch (IOException e1) {
 		}
-		return conn;
+		return connection;
 	}
 }
+
+
+//public class ConnectionFactory {
+//
+////	private static Logger logger = LogManager.getLogger(ConnectionFactory.class);
+//	public static Connection getConnection() {
+//		try {
+//			Class.forName("org.postgresql.Driver");
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		Properties props = new Properties();
+//		// search for files in the current project
+//		ClassLoader loader = Thread.currentThread().getContextClassLoader();
+//		Connection conn = null;
+//		
+//		try {
+//			props.load(loader.getResourceAsStream("connection.properties"));
+//			String url = props.getProperty("url");
+//			String username = props.getProperty("username");
+//			String password = props.getProperty("password");
+//			try {
+//				conn = DriverManager.getConnection(url, username, password);
+//			} catch (SQLException e) {
+////				logger.warn("Unable to obtain connection to database", e);
+//			}
+//		} catch (IOException e1) {
+//		}
+//		return conn;
+//	}
+//}

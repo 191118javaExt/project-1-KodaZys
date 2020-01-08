@@ -7,18 +7,18 @@ public class User {
 	private String pwd;
 	private String firstName;
 	private String lastName;
-	private int role;
+	private int roll;
 	private int approved;
 	
 	public User() {}
 
-	public User(String email, String pwd, String firstName, String lastName, int role) {
+	public User(String email, String pwd, String firstName, String lastName, int roll) {
 		super();
 		this.email = email;
 		this.pwd = pwd;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.role = role;
+		this.roll = roll;
 		this.approved = 0;		// Need manager approval
 	}
 
@@ -62,12 +62,12 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public int getRole() {
-		return role;
+	public int getRoll() {
+		return roll;
 	}
 
-	public void setRole(int role) {
-		this.role = role;
+	public void setRoll(int roll) {
+		this.roll = roll;
 	}
 
 	public int getApproved() {
@@ -81,7 +81,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", email=" + email + ", pwd=" + pwd + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", role=" + role + ", approved=" + approved + "]";
+				+ ", lastName=" + lastName + ", roll=" + roll + ", approved=" + approved + "]";
 	}
 	
 

@@ -176,8 +176,8 @@ public class ReimbursementDao {
 			// Create a reimbursement with null resolver and resolve date
 			String sql = "INSERT INTO REIMBURSEMENTS (AUTHOR, AMOUNT, SUBMIT_DATE, R_TYPE, R_DESC, R_STATUS) "
 					+ "VALUES(?, ?, ?, ?, ?, ?)";
-			String[] keyNames = {"R_ID"};
-			PreparedStatement ps = conn.prepareStatement(sql, keyNames);
+			//String[] keyNames = {"R_ID"};
+			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, r.getAuthor());
 			ps.setDouble(2,r.getAmount());
 			ps.setString(3, r.getSubmitDate());

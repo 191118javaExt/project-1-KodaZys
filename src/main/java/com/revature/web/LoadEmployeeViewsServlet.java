@@ -17,6 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 public class LoadEmployeeViewsServlet extends HttpServlet{
 //private static Logger log = Logger.getLogger(LoadEmployeeViewsServlet.class);
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String resourcePath = "partials/" + process(req, resp) + ".html";
@@ -41,7 +46,5 @@ public class LoadEmployeeViewsServlet extends HttpServlet{
 			
 		return null;
 	}
-	
-
 }
 

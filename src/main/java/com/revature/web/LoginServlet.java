@@ -50,11 +50,11 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("user", user);
 			//log.trace("ADDING USER TO SESSION: " + session.getId());		
 			// Employee login
-			if (user.getRole() == 1) {
+			if (user.getRoll() == 1) {
 				resp.sendRedirect("load-employee-home");
 			}
 			// Manager login
-			else if (user.getRole() == 2) {
+			else if (user.getRoll() == 2) {
 				resp.sendRedirect("load-manager-home");
 			}
 		}

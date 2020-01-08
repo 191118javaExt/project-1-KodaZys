@@ -8,7 +8,7 @@ import java.util.List;
 
 import com.revature.DAO.UserDao;
 import com.revature.models.User;
-
+ 
 public class UserService {
 	
 	//private static Logger log = Logger.getLogger(UserService.class);
