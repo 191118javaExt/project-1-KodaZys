@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-//import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.revature.models.User;
 import com.revature.service.UserService;
@@ -22,7 +23,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 	static UserService us = new UserService();
-	//private static Logger log = Logger.getLogger(LoginServlet.class);
+	private static Logger logger = LogManager.getLogger(LoginServlet.class);
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,12 +36,13 @@ public class LoginServlet extends HttpServlet {
 		// Login functionality
 		String email = req.getParameter("inputEmail");
 		String password = req.getParameter("inputPassword");
-		//log.trace(email);
-		//log.trace(password);
+		logger.trace(email);
+		logger.trace(password);
+		logger.info(email);
 		
 		// Validate user
 		User user = us.getUserByEmailPassword(email, password);
-		//log.trace(user);
+		logger.trace(user);
 		// Go back to login page if wrong email/pw combo OR if user is not approved
 		if (user == null || user.getApproved() == 0) {			
 			req.getRequestDispatcher("index.html").forward(req, resp);
@@ -48,7 +50,7 @@ public class LoginServlet extends HttpServlet {
 		else {
 			HttpSession session = req.getSession();
 			session.setAttribute("user", user);
-			//log.trace("ADDING USER TO SESSION: " + session.getId());		
+			logger.trace("ADDING USER TO SESSION: " + session.getId());		
 			// Employee login
 			if (user.getRoll() == 1) {
 				resp.sendRedirect("load-employee-home");
