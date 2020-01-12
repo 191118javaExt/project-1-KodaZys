@@ -1,0 +1,4 @@
+2020-01-11 23:00:16 INFO  LoginServlet:41 - msmith@gmail.com
+2020-01-11 23:01:41 INFO  LoginServlet:39 - msmith@gmail.com
+2020-01-11 23:01:41 INFO  LoginServlet:40 - rick
+2020-01-11 23:01:41 INFO  LoginServlet:41 - msmith@gmail.com

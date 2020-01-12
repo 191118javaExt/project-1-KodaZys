@@ -36,9 +36,8 @@ public class LoginServlet extends HttpServlet {
 		// Login functionality
 		String email = req.getParameter("inputEmail");
 		String password = req.getParameter("inputPassword");
-		logger.trace(email);
-		logger.trace(password);
 		logger.info(email);
+		logger.info(password);
 		
 		// Validate user
 		User user = us.getUserByEmailPassword(email, password);
