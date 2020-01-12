@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-//import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.revature.DAO.ReimbursementDao;
 import com.revature.models.Reimbursement;
 
 public class ReimbursementService {
 	
-	//Logger log = Logger.getLogger(ReimbursementService.class);
+	private static Logger logger = LogManager.getLogger(ReimbursementService.class);
 	static ReimbursementDao rd = new ReimbursementDao();
 
 	public Reimbursement getReimbursementById(int id) {
@@ -73,7 +74,7 @@ public class ReimbursementService {
 				past.add(r);
 			}
 		}
-		//log.debug(past);
+		logger.debug(past);
 		return past;
 	}
 	

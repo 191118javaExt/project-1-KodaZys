@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.RType;
@@ -29,7 +30,7 @@ public class RTypeServlet extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	//private static Logger log = Logger.getLogger(RTypeServlet.class);
+	private static Logger logger = LogManager.getLogger(RTypeServlet.class);
 	private static RTypeService typeService = new RTypeService();
 	
 	@Override
@@ -39,7 +40,7 @@ public class RTypeServlet extends HttpServlet{
 		
 		ObjectMapper mapper = new ObjectMapper();
 		String typesJson = mapper.writeValueAsString(types);
-		//log.debug(typesJson);
+		logger.debug(typesJson);
 		
 		PrintWriter writer = resp.getWriter();
 		resp.setContentType("application/json");

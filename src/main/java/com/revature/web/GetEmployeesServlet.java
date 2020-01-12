@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-//import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -26,7 +27,7 @@ public class GetEmployeesServlet extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	//private static Logger log = Logger.getLogger(GetEmployeesServlet.class);
+	private static Logger logger = LogManager.getLogger(GetEmployeesServlet.class);
 	private static UserService us = new UserService();
 
 	/**
@@ -42,7 +43,7 @@ public class GetEmployeesServlet extends HttpServlet{
 		else {
 			List<User> users = new ArrayList<User>();
 			String requestType = req.getRequestURI();
-			//log.trace(requestType);
+			logger.trace(requestType);
 			switch(requestType) {
 			case "/project-1/get-approved-employees":
 				users = us.getAllUsersExcludeCurrent(user.getUserId());	// Gets all users excluding current manager. Passwords are set to null;
@@ -65,7 +66,7 @@ public class GetEmployeesServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		String requestType = req.getRequestURI();
-		//log.trace(requestType);
+		logger.trace(requestType);
 		User onlyId = mapper.readValue(req.getInputStream(), User.class);	// User object with only the id set
 		int id = onlyId.getUserId();	// extract UserId
 		User u = us.getUserById(id);	// get user from db
@@ -79,24 +80,4 @@ public class GetEmployeesServlet extends HttpServlet{
 			break;		
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

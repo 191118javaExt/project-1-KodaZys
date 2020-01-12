@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * 
@@ -20,12 +21,12 @@ public class LoadWelcomeViewsServlet extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	//private static Logger log = Logger.getLogger(LoadWelcomeViewsServlet.class);
+	private static Logger logger = LogManager.getLogger(LoadWelcomeViewsServlet.class);
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//log.debug("In LoadWelcomeViewsServlet");
-		//log.debug(req.getRequestURI());
+		logger.debug("In LoadWelcomeViewsServlet");
+		logger.debug(req.getRequestURI());
 		String resourcePath = "partials/" + process(req, resp) + ".html";
 		req.getRequestDispatcher(resourcePath).forward(req, resp);
 	}

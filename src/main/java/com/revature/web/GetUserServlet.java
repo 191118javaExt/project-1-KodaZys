@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-//import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.User;
@@ -26,14 +27,14 @@ public class GetUserServlet extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	//private static Logger log = Logger.getLogger(GetUserServlet.class);
+	private static Logger logger = LogManager.getLogger(GetUserServlet.class);
 	private static UserService us = new UserService();
 
 	// For login
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		//log.trace("IN GET USER SERVLET. SESSION: " + session.getId());		
+		logger.trace("In GetUserServlet - Session: " + session.getId());		
 		User user = (User) session.getAttribute("user");
 //		if (user == null) {
 //			log.debug("user is null. FIX THIS!");
@@ -44,7 +45,7 @@ public class GetUserServlet extends HttpServlet{
 			//log.trace("Got a user: " + user);
 			ObjectMapper mapper = new ObjectMapper();
 			String userJson = mapper.writeValueAsString(user);
-			//log.trace(userJson);
+			logger.trace(userJson);
 			PrintWriter writer = resp.getWriter();
 			resp.setContentType("application/json");
 			writer.write(userJson);

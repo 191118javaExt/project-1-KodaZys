@@ -1,4 +1,4 @@
-2020-01-11 23:00:16 INFO  LoginServlet:41 - msmith@gmail.com
-2020-01-11 23:01:41 INFO  LoginServlet:39 - msmith@gmail.com
-2020-01-11 23:01:41 INFO  LoginServlet:40 - rick
-2020-01-11 23:01:41 INFO  LoginServlet:41 - msmith@gmail.com
+2020-51-12 00:51:01.414 [http-nio-8080-exec-19] INFO  com.revature.web.LoginServlet - msmith@gmail.com
+2020-51-12 00:51:01.437 [http-nio-8080-exec-19] INFO  com.revature.web.LoginServlet - rick
+2020-51-12 00:51:39.904 [http-nio-8080-exec-20] INFO  com.revature.web.LoginServlet - msmith@gmail.com
+2020-51-12 00:51:39.906 [http-nio-8080-exec-20] INFO  com.revature.web.LoginServlet - rick

@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-//import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.Reimbursement;
@@ -23,7 +24,7 @@ public class ResolveRequestServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	//private static Logger log = Logger.getLogger(ResolveRequestServlet.class);
+	private static Logger logger = LogManager.getLogger(ResolveRequestServlet.class);
 	private static ReimbursementService rs = new ReimbursementService();
 
 	@Override
@@ -37,7 +38,7 @@ public class ResolveRequestServlet extends HttpServlet {
 		else {
 			ObjectMapper mapper = new ObjectMapper();
 			String requestType = req.getRequestURI();
-			//log.trace(requestType);
+			logger.trace(requestType);
 			Reimbursement onlyId = mapper.readValue(req.getInputStream(), Reimbursement.class);
 			int id = onlyId.getrId();
 			Reimbursement r = rs.getReimbursementById(id);
@@ -54,8 +55,4 @@ public class ResolveRequestServlet extends HttpServlet {
 			rs.update(r);
 		}
 	}
-	
-	
-	
-
 }

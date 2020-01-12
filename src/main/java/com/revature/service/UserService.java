@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-//import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.revature.DAO.UserDao;
 import com.revature.models.User;
  
 public class UserService {
 	
-	//private static Logger log = Logger.getLogger(UserService.class);
+	private static Logger logger = LogManager.getLogger(UserService.class);
 	static UserDao ud = new UserDao();
 	
 	public User getUserById(int id) {
@@ -89,7 +90,7 @@ public class UserService {
 	}
 
 	public User update(User u) {
-		//log.debug(u);
+		logger.debug(u);
 		ud.update(u);
 		return u;
 	}
@@ -112,6 +113,4 @@ public class UserService {
 	public void delete(int id) {
 		ud.delete(id);
 	}
-	
-	
 }

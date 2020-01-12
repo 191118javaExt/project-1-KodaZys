@@ -5,7 +5,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-//import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,7 +27,7 @@ public class ReimbursementsServlet extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	//private static Logger log = Logger.getLogger(ReimbursementsServlet.class);
+	private static Logger logger = LogManager.getLogger(ReimbursementsServlet.class);
 	private static ReimbursementService rs = new ReimbursementService();
 
 	@Override
@@ -40,7 +41,7 @@ public class ReimbursementsServlet extends HttpServlet{
 		else {
 			List<Reimbursement> reimbs = new ArrayList<Reimbursement>();
 			String requestType = req.getRequestURI();
-			//log.trace(requestType);
+			logger.trace(requestType);
 			switch(requestType) {
 			case "/project-1/get-pending-by-author":
 				reimbs = rs.getPendingReimbursementsByAuthor(user.getUserId());
@@ -64,7 +65,7 @@ public class ReimbursementsServlet extends HttpServlet{
 			
 			ObjectMapper mapper = new ObjectMapper();
 			String reimsJson = mapper.writeValueAsString(reimbs);
-			//log.debug(reimsJson);
+			logger.debug(reimsJson);
 			PrintWriter writer = resp.getWriter();
 			resp.setContentType("application/json");
 			writer.write(reimsJson);
