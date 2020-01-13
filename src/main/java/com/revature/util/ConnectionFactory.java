@@ -6,9 +6,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class ConnectionFactory {
+	
+	private static Logger logger = LogManager.getLogger(ConnectionFactory.class);
 	public static Connection getConnection() {
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -27,7 +30,7 @@ public class ConnectionFactory {
 			try {
 				connection = DriverManager.getConnection(url, username, password);
 			} catch (SQLException e) {
-				//logger.warn("Unable to obtain connection to database", e);
+				logger.warn("Unable to obtain connection to database", e);
 			}
 		} catch (IOException e1) {
 		}

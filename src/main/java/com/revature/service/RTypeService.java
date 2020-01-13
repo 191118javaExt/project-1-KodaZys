@@ -21,5 +21,4 @@ public class RTypeService {
 		type = typeDao.findTypeById(id);
 		return type;
 	}
-
 }
